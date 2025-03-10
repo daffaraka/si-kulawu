@@ -120,12 +120,50 @@
                                         value="{{ $order->total_price }}" readonly>
 
                                 </div>
+                                <div class="form-group">
+                                    <label for="metode_pembayaran" class="font-weight-bold">Metode Pembayaran</label>
+                                    <select id="metode_pembayaran" name="metode_pembayaran"
+                                        class="form-select w-100 p-2 border border-gray-300 rounded-md">
+                                        <option value="bank_transfer">Bank Transfer</option>
+                                        <option value="credit_card">Kartu Kredit</option>
+                                        <option value="ovo">OVO</option>
+                                        <option value="gopay">GoPay</option>
+                                        <option value="dana">Dana</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pengiriman" class="font-weight-bold">Pengiriman</label>
+                                    <select id="pengiriman" name="pengiriman"
+                                        class="form-select w-100 p-2 border border-gray-300 rounded-md">
+                                        <option value="jne">JNE</option>
+                                        <option value="tiki">TIKI</option>
+                                        <option value="pos_indonesia">Pos Indonesia</option>
+                                        <option value="sicepat">SiCepat</option>
+                                        <option value="jnt">J&T</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nama_penerima" class="font-weight-bold">Nama Penerima</label>
+                                    <input id="nama_penerima" class="w-100 p-2 border border-gray-300 rounded-md"
+                                        type="text" name="nama_penerima" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="alamat" class="font-weight-bold">Alamat</label>
+                                    <textarea id="alamat" class="w-100 p-2 border border-gray-300 rounded-md" rows="3" name="alamat" required></textarea>
+                                </div>
+
                                 @if ($order->payment_status == '1')
                                     <button type="button" id="pay-button"
-                                        class="bg-dark text-white py-2 px-4 border border-gray-500 rounded-md active:bg-gray-700 hover:bg-gray-700">Bayar</button>
+                                        class="bg-dark text-white py-2 px-4 border border-gray-500 "
+                                        data-bs-toggle="modal" data-bs-target="#payModal">Bayar</button>
+
+                                    <!-- Modal -->
                                 @else
-                                <button type="button"
-                                class="bg-info text-white py-2 px-4 border border-gray-500 rounded-md active:bg-gray-700 hover:bg-gray-700">Tidak bisa melakukan pembayaran</button>
+                                    <button type="button"
+                                        class="bg-info text-white py-2 px-4 border border-gray-500 rounded-md active:bg-gray-700 hover:bg-gray-700">Tidak
+                                        bisa melakukan pembayaran</button>
                                 @endif
                             </form>
                         </div>
@@ -139,7 +177,66 @@
 
     </div>
     </div>
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
+
+    {{-- <div class="modal fade" id="payModal" tabindex="-1" aria-labelledby="payModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="payModalLabel">Konfirmasi
+                        Pembayaran</h5>
+                    <button type="button" class="btn btn-sm btn-dark " data-bs-dismiss="modal" aria-label="Close"><i
+                            class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('home.bayar', $order->id) }}" method="POST">
+                        <div class="form-group">
+                            <label for="metode_pembayaran" class="font-weight-bold">Metode Pembayaran</label>
+                            <select id="metode_pembayaran" name="metode_pembayaran"
+                                class="form-select w-100 p-2 border border-gray-300 rounded-md">
+                                <option value="bank_transfer">Bank Transfer</option>
+                                <option value="credit_card">Kartu Kredit</option>
+                                <option value="ovo">OVO</option>
+                                <option value="gopay">GoPay</option>
+                                <option value="dana">Dana</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pengiriman" class="font-weight-bold">Pengiriman</label>
+                            <select id="pengiriman" name="pengiriman"
+                                class="form-select w-100 p-2 border border-gray-300 rounded-md">
+                                <option value="jne">JNE</option>
+                                <option value="tiki">TIKI</option>
+                                <option value="pos_indonesia">Pos Indonesia</option>
+                                <option value="sicepat">SiCepat</option>
+                                <option value="jnt">J&T</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="nama_penerima" class="font-weight-bold">Nama Penerima</label>
+                            <input id="nama_penerima" class="w-100 p-2 border border-gray-300 rounded-md" type="text"
+                                name="nama_penerima" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alamat" class="font-weight-bold">Alamat</label>
+                            <textarea id="alamat" class="w-100 p-2 border border-gray-300 rounded-md" rows="3" name="alamat" required></textarea>
+                        </div>
+
+                        @csrf
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary mx-1">Proceed</button>
+                            <button type="button" class="btn btn-secondary mx-1" data-bs-dismiss="modal">Batal</button>
+                        </div>
+
+                    </form>
+                </div>
+          
+            </div>
+        </div>
+    </div> --}}
+
+    {{-- <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
     </script>
     <script>
         const payButton = document.querySelector('#pay-button');
@@ -191,5 +288,5 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 @endsection

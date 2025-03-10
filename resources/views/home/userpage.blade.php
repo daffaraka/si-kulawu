@@ -8,8 +8,8 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <!-- title -->
-    <title>Menak Furniture – Produk Furniture Terbaik</title>
-    <meta name="description" content="Dapatkan koleksi furniture elegan dan fungsional untuk setiap ruangan di rumah Anda di Menak Furniture. Tambahkan sentuhan indah ke rumah Anda dengan furniture dari Menak Furniture hari ini!">
+    <title>SI Kuwalu – Produk Furniture Terbaik</title>
+    <meta name="description" content="Dapatkan koleksi furniture elegan dan fungsional untuk setiap ruangan di rumah Anda di SI Kuwalu. Tambahkan sentuhan indah ke rumah Anda dengan furniture dari SI Kuwalu hari ini!">
     <meta name="keywords" content="penjual kerajinan furnitur, produk furnitur, kerajinan furnitur, furniture elegan">
 
 
@@ -136,7 +136,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-12">
-                    <p>Copyrights &copy; 2024 - <a href="https://imransdesign.com/">Menak Furniture</a>, All Rights
+                    <p>Copyrights &copy; 2024 - <a href="https://imransdesign.com/">SI Kuwalu</a>, All Rights
                         Reserved.</p>
                 </div>
                 <div class="col-lg-6 text-right col-md-12">

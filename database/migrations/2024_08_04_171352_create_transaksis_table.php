@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('total_price', 10, 2);
             $table->enum('payment_status', ['1', '2', '3', '4'])->comment('1=menunggu pembayaran, 2=sudah dibayar, 3=kadaluarsa, 4=batal');
             // $table->string('snap_token', 36)->nullable();
+            $table->string('metode_pembayaran');
             $table->string('pengiriman');
             $table->timestamps();
 

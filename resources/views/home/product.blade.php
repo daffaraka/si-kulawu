@@ -5,7 +5,7 @@
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="section-title">
                     <h3><span class="orange-text">Produk</span> Kami</h3>
-                    <p>"Keahlian dan keindahan terwujud dalam setiap produk kami. Menak Furniture yang berkualitas,dengan
+                    <p>"Keahlian dan keindahan terwujud dalam setiap produk kami. SI Kuwalu yang berkualitas,dengan
                         menghadirkan sentuhan istimewa dalam ruangan Anda."</p>
                 </div>
             </div>

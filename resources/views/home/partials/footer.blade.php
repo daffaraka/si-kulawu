@@ -4,7 +4,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="footer-box about-widget">
                     <h2 class="widget-title">Tentang Kami</h2>
-                    <p>Selamat datang di Menak Furniture! Kami adalah penyedia furnitur berkualitas tinggi dengan desain
+                    <p>Selamat datang di SI Kuwalu! Kami adalah penyedia furnitur berkualitas tinggi dengan desain
                         elegan.</p>
                 </div>
             </div>

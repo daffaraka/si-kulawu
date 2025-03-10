@@ -9,7 +9,7 @@
 
     <!-- title -->
     <title> 
-        @yield('title'){{$judul ?? ''}} | Menak Furniture
+        @yield('title'){{$judul ?? ''}} | SI Kuwalu
     </title>
     @yield('meta-tags')
 
@@ -78,7 +78,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-12">
-                    <p>Copyrights &copy; 2024 - <a href="https://imransdesign.com/">Menak Furniture</a>, All Rights
+                    <p>Copyrights &copy; 2024 - <a href="https://imransdesign.com/">SI Kuwalu</a>, All Rights
                         Reserved.</p>
                 </div>
                 <div class="col-lg-6 text-right col-md-12">
