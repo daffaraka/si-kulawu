@@ -1,6 +1,6 @@
 @extends('admin.layout')
 @section('content')
-    <h1>Tambah produk baru</h1>
+    <h1>Edit produk</h1>
     <form action="{{ route('product.update',$product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group mb-3">

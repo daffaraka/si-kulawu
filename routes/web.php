@@ -68,12 +68,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
         Route::get('tansaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
         Route::post('transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
-        Route::get('transaksi/edit/{id}', [TransaksiController::class, 'edit'])->name('transaksi.edit');
-        Route::post('transaksi/update/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
+        Route::get('transaksi/edit/{transaksi}', [TransaksiController::class, 'edit'])->name('transaksi.edit');
+        Route::post('transaksi/update/{transaksi}', [TransaksiController::class, 'update'])->name('transaksi.update');
         Route::get('destroy/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
         Route::get('transaksi/export', [TransaksiController::class, 'exportExcel'])->name('transaksi.export');
         Route::get('transaksi/print/{id}', [TransaksiController::class, 'print'])->name('transaksi.print');
-
+    
 
         // Route::get('review', [ReviewController::class, 'index'])->name('review.index');
         // Route::get('review/show/{id}', [ReviewController::class, 'show'])->name('review.edit');
@@ -86,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/add-to-cart/{id}', [HomeController::class, 'addTocart'])->name('home.addToCart');
     Route::get('/keranjang', [CartController::class, 'index'])->name('home.keranjang');
     Route::get('/daftar-transaksi', [HomeController::class, 'daftarTransaksi'])->name('home.daftarTransaksi');
+    Route::post('/bayar/{transaksi}', [TransaksiController::class, 'storeTransaksi'])->name('home.storeTransaksi');
 });
 
 // Route::post('payments/midtrans-notification', [PaymentCallBackController::class, 'receive']);

@@ -15,33 +15,10 @@ use Maatwebsite\Excel\Facades\Excel;
 class TransaksiController extends Controller
 {
 
-    protected $serverKey;
-    protected $isProduction;
-    protected $isSanitized;
-    protected $is3ds;
-
-
-    public function __construct()
-    {
-        $this->serverKey = config('midtrans.server_key');
-        $this->isProduction = config('midtrans.is_production');
-        $this->isSanitized = config('midtrans.is_sanitized');
-        $this->is3ds = config('midtrans.is_3ds');
-
-        $this->_configureMidtrans();
-    }
-
-    public function _configureMidtrans()
-    {
-        Config::$serverKey = $this->serverKey;
-        Config::$isProduction = $this->isProduction;
-        Config::$isSanitized = $this->isSanitized;
-        Config::$is3ds = $this->is3ds;
-    }
     public function index()
     {
 
-        $transaksi = Transaksi::with(['user', 'transaksiProduct.product'])->get();
+        $transaksi = Transaksi::with(['user', 'transaksiProduct.product'])->paginate(10);
 
         return view('admin.transaksi.transaksi-index', compact('transaksi'));
     }
@@ -73,7 +50,6 @@ class TransaksiController extends Controller
                 ];
         }
 
-        $snapToken = '';
 
         $order = new Transaksi();
         $order->user_id = $carts[0]['user_id'];
@@ -81,19 +57,6 @@ class TransaksiController extends Controller
         $order->payment_status = 1;
         $order->number = 1;
         $order->save();
-
-        $payload = [
-            'transaction_details' => [
-                'order_id' => $order->order_id,
-                'gross_amount' => $final_total,
-            ],
-            'item_details' => $itemDetails,
-            'customer_details' => [
-                'first_name' => $order->user->name,
-                'email' => $order->user->email,
-            ]
-        ];
-
 
         foreach ($carts as $cart) {
             $transaksiProduct = new TransaksiProduct();
@@ -105,17 +68,11 @@ class TransaksiController extends Controller
         }
 
 
-        // if (empty($order->snap_token)) {
-        //     $order->snap_token = Snap::getSnapToken($payload);
-        //     $order->save();
-        // }
-
-        // $snapToken = $order->snap_token;
+     
 
 
         $transaksi = $order;
 
-        // dd($transaksi);
 
         return to_route('home.lengkapiPembayaran', ['transaksi' => $transaksi]);
     }
@@ -132,23 +89,18 @@ class TransaksiController extends Controller
         return view('home.bayar', compact('order', 'snapToken'));
     }
 
-    public function show(Transaksi $transaksi)
+    public function storeTransaksi(Request $request, Transaksi $transaksi)
     {
-        //
-    }
-
-    public function edit(Transaksi $transaksi)
-    {
-        //
-    }
-
-    public function update(Request $request, Transaksi $transaksi)
-    {
+        // dd($request->all());
+        $transaksi->update([
+            'metode_pembayaran' => $request->metode_pembayaran,
+            'pengiriman' => $request->pengiriman,
+            'nama_penerima' => $request->nama_penerima,
+            'alamat' => $request->alamat,
+            'payment_status' => 2
+        ]);
         
-    }
-
-    public function destroy(Transaksi $transaksi) {
-        
+        return redirect()->back();
     }
 
 
@@ -158,5 +110,41 @@ class TransaksiController extends Controller
 
     public function print() {
         // return Excel::download(new TransaksiExport, 'transaksi.xlsx');
+    }
+
+
+    public function edit(Transaksi $transaksi)
+    {
+        $transaksi->load('transaksiProduct','user');
+        return view('admin.transaksi.transaksi-edit',compact('transaksi'));
+    }
+
+
+    public function update(Request $request, Transaksi $transaksi)
+    {
+        $transaksi = Transaksi::find(request('transaksi_id'));
+     
+        $resi = $request->input('resi');
+
+        if ($request->payment_status == 'Diproses' && $transaksi->payment_status == 1) {
+            return redirect()->back()->with('error', 'Gagal, Harus lewat Verifikasi Pembayaran dulu.');
+        }
+
+        if ($request->payment_status == 'Dikirim' && empty($resi)) {
+            return redirect()->back()->with('error', 'Gagal, Harus isi nomor resi dulu.');
+        }
+
+        if ($request->payment_status == 'Selesai' && $transaksi->status == 'Dikirim') {
+            $transaksi->payment_status = 3;
+        }
+
+        $transaksi->payment_status = $request->payment_status;
+        $transaksi->save();
+
+        if ($request->payment_status == 'Dikirim') {
+            $transaksi->update(['resi' => $resi]);
+        }
+
+        return redirect()->back()->with('success', 'Berhasil');
     }
 }

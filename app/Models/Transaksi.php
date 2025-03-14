@@ -2,21 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Transaksi extends Model
 {
     use HasFactory;
 
 
-    protected $filable =
+    protected $fillable =
     [
         'number',
         'user_id',
         'total_price',
         'payment_status',
-        // 'snap_token'
+        'nama_penerima',
+        'metode_pembayaran',
+        'pengiriman',
+        'alamat'
     ];
 
 
@@ -42,18 +46,17 @@ class Transaksi extends Model
     protected static function boot()
     {
         parent::boot();
-
-        // Otomatis buat Produk-1 , Produk-2, Produk-3 dst
         static::creating(function ($order) {
-            $lastOrder = static::latest()->first();
-
-            if ($lastOrder) {
-                $lastCode = explode('-', $lastOrder->order_id);
-                $number = intval($lastCode[1]);
-                $order->order_id = 'ORDER-' . ($number + 1) . ' - ' . date('Y-m-d - H:i:s');
+            $lastOrder = Transaksi::latest('id')->value('order_id');
+        
+            if ($lastOrder && preg_match('/ORDER-(\d+)/', $lastOrder, $matches)) {
+                $number = intval($matches[1]) + 1;
             } else {
-                $order->order_id = 'ORDER-1' . ' - ' . date('Y-m-d - H:i:s');
+                $number = 1;
             }
+        
+            $order->order_id = 'ORDER-' . $number;
         });
+        
     }
 }

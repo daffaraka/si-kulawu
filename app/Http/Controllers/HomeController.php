@@ -93,38 +93,38 @@ class HomeController extends Controller
     }
 
 
-    public function buatUlasan($id)
-    {
-        $transaksi = Transaksi::find($id);
+    // public function buatUlasan($id)
+    // {
+    //     $transaksi = Transaksi::find($id);
 
 
-        return view('home.ulasan', compact('transaksi'));
-    }
+    //     return view('home.ulasan', compact('transaksi'));
+    // }
 
 
-    public function tambahkanUlasan(Request $request)
-    {
+    // public function tambahkanUlasan(Request $request)
+    // {
 
-        // dd($request->rating);
+    //     // dd($request->rating);
 
-        $requestRating = array_values($request->rating);
+    //     $requestRating = array_values($request->rating);
 
-        // dd($request->all());
-
-
-        // dd(count($requestRating));
-        for ($i = 0; $i < count($requestRating); $i++) {
-
-            $review = new Review();
-            $review->ulasan = $request->ulasan[$i];
-            $review->rating = $requestRating[$i];
-            $review->product_id = $request->product_id[$i];
-            $review->transaksi_id = $request->transaksi_id;
-            $review->user_id = Auth::user()->id;
-            $review->save();
-        }
+    //     // dd($request->all());
 
 
-        return to_route('home.daftarTransaksi');
-    }
+    //     // dd(count($requestRating));
+    //     for ($i = 0; $i < count($requestRating); $i++) {
+
+    //         $review = new Review();
+    //         $review->ulasan = $request->ulasan[$i];
+    //         $review->rating = $requestRating[$i];
+    //         $review->product_id = $request->product_id[$i];
+    //         $review->transaksi_id = $request->transaksi_id;
+    //         $review->user_id = Auth::user()->id;
+    //         $review->save();
+    //     }
+
+
+    //     return to_route('home.daftarTransaksi');
+    // }
 }

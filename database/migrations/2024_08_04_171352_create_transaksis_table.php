@@ -17,10 +17,12 @@ return new class extends Migration
             $table->longText('order_id');
             $table->unsignedBigInteger('user_id');
             $table->decimal('total_price', 10, 2);
-            $table->enum('payment_status', ['1', '2', '3', '4'])->comment('1=menunggu pembayaran, 2=sudah dibayar, 3=kadaluarsa, 4=batal');
-            // $table->string('snap_token', 36)->nullable();
-            $table->string('metode_pembayaran');
-            $table->string('pengiriman');
+            $table->enum('payment_status', ['1', '2', '3', '4', '5', '6'])->comment('1=menunggu pembayaran, 2=pembayaran dikonfirmasi, 3=diproses, 4=dikirim, 5=sampai di tujuan, 6=selesai');
+            $table->string('nama_penerima')->nullable();
+            $table->string('metode_pembayaran')->nullable();
+            $table->string('pengiriman')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('no_resi')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

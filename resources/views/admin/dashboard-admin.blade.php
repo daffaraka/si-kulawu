@@ -107,23 +107,31 @@
                                         <td>{{ $item->user->name }}</td>
                                         <td>
                                             @if ($item->payment_status == '1')
-                                                <button type="button" class="btn btn-sm btn-warning ">
+                                                <button type="button" class="btn btn-sm btn-warning">
                                                     Menunggu Pembayaran
                                                 </button>
                                             @elseif($item->payment_status == '2')
-                                                <button type="button" class="btn btn-sm btn-success ">
-                                                    Sudah Dibayar
+                                                <button type="button" class="btn btn-sm btn-success">
+                                                    Pembayaran Dikonfirmasi
                                                 </button>
                                             @elseif($item->payment_status == '3')
-                                                <button type="button" class="btn btn-sm btn-secondary ">
-                                                    Kadaluarsa
+                                                <button type="button" class="btn btn-sm btn-primary">
+                                                    Diproses
                                                 </button>
                                             @elseif($item->payment_status == '4')
-                                                <button type="button" class="btn btn-sm btn-danger ">
-                                                    Dibatalkan
+                                                <button type="button" class="btn btn-sm btn-info">
+                                                    Dikirim
+                                                </button>
+                                            @elseif($item->payment_status == '5')
+                                                <button type="button" class="btn btn-sm btn-light">
+                                                    Sampai di Tujuan
+                                                </button>
+                                            @elseif($item->payment_status == '6')
+                                                <button type="button" class="btn btn-sm btn-success">
+                                                    Selesai
                                                 </button>
                                             @else
-                                                <button type="button" class="btn btn-sm btn-info ">
+                                                <button type="button" class="btn btn-sm btn-secondary">
                                                     Status Tidak Valid
                                                 </button>
                                             @endif

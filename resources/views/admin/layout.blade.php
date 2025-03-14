@@ -36,8 +36,6 @@
     <link rel="stylesheet" href="{{asset('admin/dist/plugins/datatables-responsive/css/responsive.bootstrap4.css')}} ">
 
     <link rel="stylesheet" href="{{asset('admin/dist/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}} ">
-    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>

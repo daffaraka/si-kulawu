@@ -83,8 +83,8 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('home.keranjang') }}">
-
+                            <form action="{{ route('home.storeTransaksi', ['transaksi' => $order]) }}" method="POST">
+                                @csrf
 
                                 <div class="my-4">
                                     @if ($order->payment_status == '1')
@@ -108,56 +108,91 @@
                                     @endif
                                 </div>
 
-                                <div class="form-group">,
-                                    <label for="" class="font-weight-bold">Nama Pemesan</label>
-                                    <input id="" class="w-100 p-2 border border-gray-300 rounded-md" type="text"
-                                        value="{{ $order->user->name }}" readonly>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="" class="font-weight-bold">Total Harga</label>
-                                    <input id="" class="w-100 p-2 border border-gray-300 rounded-md" type="text"
-                                        value="{{ $order->total_price }}" readonly>
-
-                                </div>
-                                <div class="form-group">
-                                    <label for="metode_pembayaran" class="font-weight-bold">Metode Pembayaran</label>
-                                    <select id="metode_pembayaran" name="metode_pembayaran"
-                                        class="form-select w-100 p-2 border border-gray-300 rounded-md">
-                                        <option value="bank_transfer">Bank Transfer</option>
-                                        <option value="credit_card">Kartu Kredit</option>
-                                        <option value="ovo">OVO</option>
-                                        <option value="gopay">GoPay</option>
-                                        <option value="dana">Dana</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="pengiriman" class="font-weight-bold">Pengiriman</label>
-                                    <select id="pengiriman" name="pengiriman"
-                                        class="form-select w-100 p-2 border border-gray-300 rounded-md">
-                                        <option value="jne">JNE</option>
-                                        <option value="tiki">TIKI</option>
-                                        <option value="pos_indonesia">Pos Indonesia</option>
-                                        <option value="sicepat">SiCepat</option>
-                                        <option value="jnt">J&T</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nama_penerima" class="font-weight-bold">Nama Penerima</label>
-                                    <input id="nama_penerima" class="w-100 p-2 border border-gray-300 rounded-md"
-                                        type="text" name="nama_penerima" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="alamat" class="font-weight-bold">Alamat</label>
-                                    <textarea id="alamat" class="w-100 p-2 border border-gray-300 rounded-md" rows="3" name="alamat" required></textarea>
-                                </div>
 
                                 @if ($order->payment_status == '1')
-                                    <button type="button" id="pay-button"
-                                        class="bg-dark text-white py-2 px-4 border border-gray-500 "
-                                        data-bs-toggle="modal" data-bs-target="#payModal">Bayar</button>
+                                    <div class="form-group">,
+                                        <label for="" class="font-weight-bold">Nama Pemesan</label>
+                                        <input id="" class="w-100 p-2 border border-gray-300 rounded-md"
+                                            type="text" value="{{ $order->user->name }}" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="" class="font-weight-bold">Total Harga</label>
+                                        <input id="" class="w-100 p-2 border border-gray-300 rounded-md"
+                                            type="text" value="{{ $order->total_price }}" disabled>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="metode_pembayaran" class="font-weight-bold">Metode Pembayaran</label>
+                                        <select id="metode_pembayaran" name="metode_pembayaran"
+                                            class="form-select w-100 p-2 border border-gray-300 rounded-md">
+                                            <option value="Bank Transfer">Bank Transfer</option>
+                                            <option value="Ovo">OVO</option>
+                                            <option value="Gopay">GoPay</option>
+                                            <option value="Dana">Dana</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pengiriman" class="font-weight-bold">Pengiriman</label>
+                                        <select id="pengiriman" name="pengiriman"
+                                            class="form-select w-100 p-2 border border-gray-300 rounded-md">
+                                            <option value="JNE">JNE</option>
+                                            <option value="TIKI">TIKI</option>
+                                            <option value="Pos Indonesia">Pos Indonesia</option>
+                                            <option value="SiCepat">SiCepat</option>
+                                            <option value="JNT">J&T</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nama_penerima" class="font-weight-bold">Nama Penerima</label>
+                                        <input id="nama_penerima" class="w-100 p-2 border border-gray-300 rounded-md"
+                                            type="text" name="nama_penerima" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="alamat" class="font-weight-bold">Alamat</label>
+                                        <textarea id="alamat" class="w-100 p-2 border border-gray-300 rounded-md" rows="3" name="alamat" required></textarea>
+                                    </div>
+                                @else
+                                    <div class="form-group">
+                                        <label for="" class="font-weight-bold">Nama Pemesan</label>
+                                        <input id="" class="w-100 p-2 border border-gray-300 rounded-md"
+                                            type="text" value="{{ $order->user->name }}" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="font-weight-bold">Total Harga</label>
+                                        <input id="" class="w-100 p-2 border border-gray-300 rounded-md"
+                                            type="text" value="{{ $order->total_price }}" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="metode_pembayaran" class="font-weight-bold">Metode Pembayaran</label>
+                                        <input id="metode_pembayaran" class="w-100 p-2 border border-gray-300 rounded-md"
+                                            type="text" value="{{ $order->metode_pembayaran }}" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pengiriman" class="font-weight-bold">Pengiriman</label>
+                                        <input id="pengiriman" class="w-100 p-2 border border-gray-300 rounded-md"
+                                            type="text" value="{{ $order->pengiriman }}" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nama_penerima" class="font-weight-bold">Nama Penerima</label>
+                                        <input id="nama_penerima" class="w-100 p-2 border border-gray-300 rounded-md"
+                                            type="text" value="{{ $order->nama_penerima }}" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="alamat" class="font-weight-bold">Alamat</label>
+                                        <textarea id="alamat" class="w-100 p-2 border border-gray-300 rounded-md" rows="3"
+                                            disabled>{{ $order->alamat }}</textarea>
+                                    </div>
+                                @endif
+
+
+
+
+                                @if ($order->payment_status == '1')
+                                    <button type="submit"
+                                        class="bg-dark text-white py-2 px-4 border border-gray-500 ">Bayar</button>
 
                                     <!-- Modal -->
                                 @else
@@ -214,7 +249,7 @@
                         </div>
                         <div class="form-group">
                             <label for="nama_penerima" class="font-weight-bold">Nama Penerima</label>
-                            <input id="nama_penerima" class="w-100 p-2 border border-gray-300 rounded-md" type="text"
+                        <input id="nama_penerima" class="w-100 p-2 border border-gray-300 rounded-md" type="text"
                                 name="nama_penerima" required>
                         </div>
 

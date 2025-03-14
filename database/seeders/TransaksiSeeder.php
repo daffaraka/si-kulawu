@@ -18,15 +18,21 @@ class TransaksiSeeder extends Seeder
     {
         $userIds = User::pluck('id')->toArray();
         $productIds = Product::pluck('id')->toArray();
-        $statuses = [1, 2, 3, 4]; // Status bisa disesuaikan dengan status yang sesuai
+        $statuses = [1, 2, 3, 4, 5, 6]; // Status bisa disesuaikan dengan status yang sesuai
+        $metodePembayarans = ['Bank Transfer', 'Ovo', 'Gopay', 'Dana'];
+        $pengirimans = ['JNE', 'TIKI', 'Pos Indonesia', 'SiCepat', 'J&T'];
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             // Membuat transaksi baru
             $transaksi = Transaksi::create([
+                'number' => $i + 1,
                 'user_id' => $userIds[array_rand($userIds)],
                 'total_price' => rand(100000, 1000000),
                 'payment_status' => $statuses[array_rand($statuses)],
-                'number' => $i + 1,
+                'nama_penerima' => 'Penerima ' . ($i + 1),
+                'metode_pembayaran' => $metodePembayarans[array_rand($metodePembayarans)],
+                'pengiriman' => $pengirimans[array_rand($pengirimans)],
+                'alamat' => 'Alamat ' . ($i + 1),
             ]);
 
             // Menambahkan produk ke transaksi
