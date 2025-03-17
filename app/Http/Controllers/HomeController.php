@@ -115,6 +115,8 @@ class HomeController extends Controller
 
             return response()->json([
                 'success' => true,
+                'status' => 'success',
+
                 'message' => 'Produk berhasil ditambahkan'
             ]);
         } else {
@@ -127,6 +129,7 @@ class HomeController extends Controller
 
             return response()->json([
                 'success' => true,
+                'status' => 'success',
                 'message' => 'Produk berhasil ditambahkan'
             ]);
         }

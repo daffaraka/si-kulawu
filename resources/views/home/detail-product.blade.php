@@ -282,11 +282,13 @@
 
                     },
                     success: function(response) {
-                        if (response.status == 'success') {
-                            alert(response.message);
-                        } else {
-                            alert(response.message);
-                        }
+                        Swal.fire({
+                            icon: response.status,
+                            title: response.message,
+                            text: '',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     }
                 });
             });
