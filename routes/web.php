@@ -82,7 +82,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/formulir-pembayaran', [TransaksiController::class, 'buatOrder'])->name('home.bayar');
     Route::get('/lengkapi-pembayaran/{transaksi}', [TransaksiController::class, 'lengkapiPembayaran'])->name('home.lengkapiPembayaran');
 
-    Route::get('/add-to-cart/{id}', [HomeController::class, 'addTocart'])->name('home.addToCart');
+    Route::post('/add-to-cart/{id}', [HomeController::class, 'addTocart'])->name('home.addToCart');
     Route::get('/keranjang', [CartController::class, 'index'])->name('home.keranjang');
     Route::get('/daftar-transaksi', [HomeController::class, 'daftarTransaksi'])->name('home.daftarTransaksi');
     Route::post('/bayar/{transaksi}', [TransaksiController::class, 'storeTransaksi'])->name('home.storeTransaksi');

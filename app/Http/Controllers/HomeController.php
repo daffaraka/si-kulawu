@@ -22,51 +22,51 @@ class HomeController extends Controller
 
     public function detailProduct($id)
     {
-        $product = Product::with('reviews.user')->find($id);
-        $produkRating = number_format($product->reviews()->avg('rating'), 1);
-        $produkJumlahRating = $product->reviews->groupBy('rating')
-        ->map(function ($reviews) {
-            return $reviews->pluck('rating');
-        })->map(function ($count) {
-            return $count->count();
-        })->sortKeysDesc();
+        $product = Product::find($id);
+        // $produkRating = number_format($product->reviews()->avg('rating'), 1);
+        // $produkJumlahRating = $product->reviews->groupBy('rating')
+        // ->map(function ($reviews) {
+        //     return $reviews->pluck('rating');
+        // })->map(function ($count) {
+        //     return $count->count();
+        // })->sortKeysDesc();
 
         // $review =  Review::orderBy('rating')->get()->groupBy('rating')
         // ->map(function ($reviews) {
         //     return $reviews->pluck('rating');
         // });
-      
+
         // dd($produkRating);
-        return view('home.detail-product', compact('product','produkRating','produkJumlahRating'));
+        return view('home.detail-product', compact('product'));
     }
 
 
-    public function addToCart($id)
-    {
-        $product = Product::find($id);
-        $user_id = Auth::user()->id;
+    // public function addToCart($id)
+    // {
+    //     $product = Product::find($id);
+    //     $user_id = Auth::user()->id;
 
-        $qty = 1;
+    //     $qty = 1;
 
-        $cart = new Cart();
+    //     $cart = new Cart();
 
 
-        if ($cart->where('user_id', $user_id)->where('product_id', $product->id)->exists()) {
+    //     if ($cart->where('user_id', $user_id)->where('product_id', $product->id)->exists()) {
 
-            $cart->where('user_id', $user_id)->where('product_id', $product->id)->increment('qty', $qty);
-            // $cart->qty->save();
-        } else {
+    //         $cart->where('user_id', $user_id)->where('product_id', $product->id)->increment('qty', $qty);
+    //         // $cart->qty->save();
+    //     } else {
 
-            $cart->product_id = $product->id;
-            $cart->user_id = $user_id;
-            $cart->qty = $qty;
-            $cart->status = 'Dalam Keranjang';
-            $cart->save();
-        }
+    //         $cart->product_id = $product->id;
+    //         $cart->user_id = $user_id;
+    //         $cart->qty = $qty;
+    //         $cart->status = 'Dalam Keranjang';
+    //         $cart->save();
+    //     }
 
-        return redirect()->route('home.keranjang');
-        // $transaksi = Transaksi::where('user_id',$user_id)->get();
-    }
+    //     return redirect()->route('home.keranjang');
+    //     // $transaksi = Transaksi::where('user_id',$user_id)->get();
+    // }
 
 
     public function checkout()
@@ -92,6 +92,45 @@ class HomeController extends Controller
         return view('home.daftar-transaksi', compact(['transaksi', 'transaksiSelesai']));
     }
 
+
+
+
+    public function addToCart(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $user_id = Auth::user()->id;
+
+
+
+        // dd($request->all());
+        $qty = $request->qty;
+
+        $cart = new Cart();
+
+
+        if ($cart->where('user_id', $user_id)->where('product_id', $product->id)->exists()) {
+
+            $cart->where('user_id', $user_id)->where('product_id', $product->id)->increment('qty', $qty);
+            // $cart->qty->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Produk berhasil ditambahkan'
+            ]);
+        } else {
+
+            $cart->product_id = $product->id;
+            $cart->user_id = $user_id;
+            $cart->qty = $qty;
+            $cart->status = 'Dalam Keranjang';
+            $cart->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Produk berhasil ditambahkan'
+            ]);
+        }
+    }
 
     // public function buatUlasan($id)
     // {
