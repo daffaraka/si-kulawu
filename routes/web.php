@@ -72,9 +72,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('transaksi/update/{transaksi}', [TransaksiController::class, 'update'])->name('transaksi.update');
         Route::get('destroy/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
         Route::get('transaksi/export', [TransaksiController::class, 'exportExcel'])->name('transaksi.export');
-        Route::get('transaksi/print/{id}', [TransaksiController::class, 'print'])->name('transaksi.print');
-    
-
+        Route::get('transaksi/print', [TransaksiController::class, 'print'])->name('transaksi.print');
+        
         // Route::get('review', [ReviewController::class, 'index'])->name('review.index');
         // Route::get('review/show/{id}', [ReviewController::class, 'show'])->name('review.edit');
 

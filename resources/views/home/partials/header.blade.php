@@ -1,110 +1,49 @@
-<style>
-    #logincss {
-        margin-left: 3px;
-    }
-
-    #registercss {
-        margin-right: 7px;
-    }
-</style>
-
-<div class="top-header-area" id="sticker">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-sm-12 text-center">
-                <div class="main-menu-wrap">
-                    <!-- logo -->
-                    <div class="site-logo">
-                        <a href="/">
-                            <img src="home/assets/img/logo-menak.png" alt="">
-                        </a>
-                    </div>
-                    <!-- logo -->
-
-                    <!-- menu start -->
-                    <nav class="main-menu">
-                        <ul>
-                            <li class="{{ Request::routeIs('home') ? 'current-list-item' : '' }} "><a
-                                    href="{{ url('/') }}">Home</a>
-                            </li>
-                            <li class="{{ Request::routeIs('home.tentang-kami') ? 'current-list-item' : '' }} "><a
-                                    href="{{ route('home.tentang-kami') }}">Tentang Kami</a></li>
-                            <li
-                                class="{{ Request::routeIs('home.furniture-kayu-jati') || Request::routeIs('home.lemari-kayu-jati') || Request::routeIs('home.meja-kayu-jati') || Request::routeIs('home.custom-design') || Request::routeIs('home.mini-furniture') ? 'current-list-item' : '' }} ">
-                                <a href="#">Layanan Kami</a>
-                                <ul class="sub-menu">
-                                    <li> <a href="{{ route('home.furniture-kayu-jati') }}"> Furniture Kayu
-                                            Jati</a></li>
-                                    <li><a href="{{ route('home.lemari-kayu-jati') }}">Lemari Kayu Jati</a></li>
-                                    <li><a href="{{ route('home.meja-kayu-jati') }}">Meja Kayu</a></li>
-                                    <li><a href="{{ route('home.custom-design') }}">Custom Design</a></li>
-                                    <li><a href="{{ route('home.mini-furniture') }}">Mini Furniture</a></li>
-                                </ul>
-                            </li>
-                            <li class="{{ Request::routeIs('home.kontak-kami') ? 'current-list-item' : '' }} "><a
-                                    href="{{ route('home.kontak-kami') }}">Kontak Kami</a></li>
-                            <li>
-                                <div class="header-icons">
-                                    <!-- <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a> -->
-                                    <a class="mobile-hide search-bar-icon" href="#"><i
-                                            class="fas fa-search"></i></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="header-icons">
-                                    @auth
-                                        <div class="dropdown">
-                                            <a href="#" class="dropdown-toggle" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                {{ Auth::user()->name }}
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                <li class="w-100"><a class="dropdown-item text-dark w-100"
-                                                        href="{{ route('home.keranjang') }}">Keranjang <button
-                                                            class="btn btn-primary p-1 px-2 btn-xs">
-                                                            {{ $cart_count }}</button> </a></li>
-                                                <li class="w-100"><a class="dropdown-item text-dark w-100"
-                                                        href="{{ route('home.daftarTransaksi') }}">Transaksi <button
-                                                            class="btn btn-primary p-1 px-2 btn-xs">
-                                                            {{ $transaksi_count }}</button> </a></li>
-
-                                                <li class="w-100">
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                        style="display: none;">
-                                                        @csrf
-                                                    </form>
-
-                                                    <a class="dropdown-item text-dark w-100" href="{{ route('logout') }}"
-                                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        
-
-                                    @endauth
-
-
-                                </div>
-                            </li>
-
-                            @guest
-                                <li>
-                                    <div class="">
-                                        <a class="btn btn-sm btn-primary" href="{{ route('login') }}">
-                                            Login</a>
-                                        <a class="btn btn-sm btn-success" href="{{ route('register') }}">
-                                            Register</a>
-                                    </div>
-
-                                </li>
-                            @endguest
-                        </ul>
-                    </nav>
-                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                    <div class="mobile-menu"></div>
-                    <!-- menu end -->
+<nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+    <a href="" class="text-decoration-none d-block d-lg-none">
+        <h1 class="m-0 display-5 font-weight-semi-bold"><span
+                class="text-primary font-weight-bold border px-3 mr-1">SI</span>Kuwalu</h1>
+    </a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+        <div class="navbar-nav mr-auto py-0">
+            <a href="/" class="nav-item nav-link active">Home</a>
+            {{-- <a href="shop.html" class="nav-item nav-link">Shop</a> --}}
+            {{-- <a href="detail.html" class="nav-item nav-link">Shop Detail</a> --}}
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                <div class="dropdown-menu rounded-0 m-0">
+                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                    <a href="checkout.html" class="dropdown-item">Checkout</a>
                 </div>
             </div>
+            <a href="contact.html" class="nav-item nav-link">Contact</a>
+        </div>
+        <div class="navbar-nav ml-auto py-0">
+            @guest
+                <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
+                <a href="{{ route('register') }}" class="nav-item nav-link">Register</a>
+            @endguest
+
+            @auth
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+
+                <div class="dropdown-menu rounded-0 m-0">
+                    <a href="{{ route('home.keranjang') }}" class="dropdown-item">Shopping Cart</a>
+                    <a href="{{ route('home.daftarTransaksi') }}" class="dropdown-item">Transaksi</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="dropdown-item">Logout</button>
+                    </form>
+
+                </div>
+
+            </div>
+            
+            @endauth
+
         </div>
     </div>
-</div>
+</nav>

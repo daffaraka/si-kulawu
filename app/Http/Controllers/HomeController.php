@@ -16,7 +16,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $data['product'] = Product::all();
+        $data['products'] = Product::take(8)->get();
         return view('home.userpage', $data);
     }
 

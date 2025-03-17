@@ -4,13 +4,13 @@
 
     <div class="d-flex justify-content-between">
         <div>
-            <a href="{{ route('transaksi.create') }}" class="btn btn-primary">Tambah Transaksi</a>
+            {{-- <a href="{{ route('transaksi.create') }}" class="btn btn-primary">Tambah Transaksi</a> --}}
 
         </div>
 
         <div class="">
             <div class="d-grid gap-2">
-                <a href="#" class="btn btn-info" onclick="exportToPdf()"><i class="fas fa-file-pdf"></i> Export PDF</a>
+                <a href="{{route('transaksi.print')}}" class="btn btn-info" onclick="exportToPdf()"><i class="fas fa-file-pdf"></i> Export PDF</a>
                 <a href="{{ route('transaksi.export') }}" class="btn btn-success"><i class="fas fa-file-excel"></i> Export
                     Excel</a>
             </div>
@@ -70,7 +70,7 @@
                         </td>
                         <td>{{ $data->no_resi }}</td>
                         <td>
-                            <ul>
+                            {{-- <ul> --}}
                                 {{-- <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-info">Show</a> --}}
                                 <a href="{{ route('transaksi.edit', $data->id) }}" class="btn btn-primary">Edit</a>
                                 <form action="" method="POST" class="d-inline">
@@ -78,7 +78,7 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
-                            </ul>
+                            {{-- </ul> --}}
                         </td>
                     </tr>
                 @endforeach

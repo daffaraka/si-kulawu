@@ -11,7 +11,7 @@ use App\Exports\TransaksiExport;
 use App\Models\TransaksiProduct;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 class TransaksiController extends Controller
 {
 
@@ -108,16 +108,20 @@ class TransaksiController extends Controller
         return Excel::download(new TransaksiExport, 'transaksi.xlsx');
     }
 
-    public function print() {
-        // return Excel::download(new TransaksiExport, 'transaksi.xlsx');
+    public function print()
+    {
+        $transaksi = Transaksi::with(['user', 'transaksiProduct.product'])->get();
+        $pdf = Pdf::loadview('admin.transaksi.transaksi-pdf', compact('transaksi'))
+            ->setPaper('a4', 'landscape');
+        $tgl = date('d-m-Y_H-i`-s');
+        return $pdf->stream('transaksi' . $tgl . '.pdf');
     }
-
 
     public function edit(Transaksi $transaksi)
     {
         $transaksi->load('transaksiProduct','user');
         return view('admin.transaksi.transaksi-edit',compact('transaksi'));
-    }
+}
 
 
     public function update(Request $request, Transaksi $transaksi)
@@ -147,4 +151,7 @@ class TransaksiController extends Controller
 
         return redirect()->back()->with('success', 'Berhasil');
     }
+
+
+    
 }
