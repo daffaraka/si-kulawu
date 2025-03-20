@@ -59,13 +59,17 @@
                             @if ($data->payment_status == '1')
                                 <button class="btn btn-sm btn-warning">Menunggu Pembayaran</button>
                             @elseif($data->payment_status == '2')
-                                <button class="btn btn-sm btn-success">Sudah Dibayar</button>
+                                <button class="btn btn-sm btn-success">Pembayaran Dikonfirmasi</button>
                             @elseif($data->payment_status == '3')
-                                <button class="btn btn-sm btn-secondary">Kadaluarsa</button>
+                                <button class="btn btn-sm btn-primary">Diproses</button>
                             @elseif($data->payment_status == '4')
-                                <button class="btn btn-sm btn-danger">Batal</button>
+                                <button class="btn btn-sm btn-info">Dikirim</button>
+                            @elseif($data->payment_status == '5')
+                                <button class="btn btn-sm btn-light">Sampai di Tujuan</button>
+                            @elseif($data->payment_status == '6')
+                                <button class="btn btn-sm btn-success">Selesai</button>
                             @else
-                                <button class="btn btn-sm btn-info">Status Tidak Valid</button>
+                                <button class="btn btn-sm btn-secondary">Status Tidak Valid</button>
                             @endif
                         </td>
                         <td>{{ $data->no_resi }}</td>

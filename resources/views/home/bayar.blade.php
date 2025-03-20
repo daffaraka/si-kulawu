@@ -88,23 +88,19 @@
 
                                 <div class="my-4">
                                     @if ($order->payment_status == '1')
-                                        <button type="button"
-                                            class="bg-warning text-white py-2 px-4 border border-gray-500 rounded-md active:bg-yellow-700 hover:bg-yellow-700 w-100">Menunggu
-                                            Pembayaran</button>
+                                        <button class="btn btn-sm btn-warning">Menunggu Pembayaran</button>
                                     @elseif($order->payment_status == '2')
-                                        <button type="button"
-                                            class="bg-success text-white py-2 px-4 border border-gray-500 rounded-md active:bg-green-700 hover:bg-green-700 w-100">Sudah
-                                            Dibayar</button>
+                                        <button class="btn btn-sm btn-success">Pembayaran Dikonfirmasi</button>
                                     @elseif($order->payment_status == '3')
-                                        <button type="button"
-                                            class="bg-secondary text-white py-2 px-4 border border-gray-500 rounded-md active:bg-gray-700 hover:bg-gray-700 w-100">Kadaluarsa</button>
+                                        <button class="btn btn-sm btn-primary">Diproses</button>
                                     @elseif($order->payment_status == '4')
-                                        <button type="button"
-                                            class="bg-danger text-white py-2 px-4 border border-gray-500 rounded-md active:bg-red-700 hover:bg-red-700 w-100">Dibatalkan</button>
+                                        <button class="btn btn-sm btn-info">Dikirim</button>
+                                    @elseif($order->payment_status == '5')
+                                        <button class="btn btn-sm btn-light">Sampai di Tujuan</button>
+                                    @elseif($order->payment_status == '6')
+                                        <button class="btn btn-sm btn-success">Selesai</button>
                                     @else
-                                        <button type="button"
-                                            class="bg-info text-white py-2 px-4 border border-gray-500 rounded-md active:bg-blue-700 hover:bg-blue-700 w-100">Status
-                                            Tidak Valid</button>
+                                        <button class="btn btn-sm btn-secondary">Status Tidak Valid</button>
                                     @endif
                                 </div>
 
@@ -197,8 +193,7 @@
                                     <!-- Modal -->
                                 @else
                                     <button type="button"
-                                        class="bg-info text-white py-2 px-4 border border-gray-500 rounded-md active:bg-gray-700 hover:bg-gray-700">Tidak
-                                        bisa melakukan pembayaran</button>
+                                        class="bg-info text-white py-2 px-4 border border-gray-500 rounded-md active:bg-gray-700 hover:bg-gray-700">Menunggu admin mengkonfirmasi</button>
                                 @endif
                             </form>
                         </div>

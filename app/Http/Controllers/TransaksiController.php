@@ -18,7 +18,7 @@ class TransaksiController extends Controller
     public function index()
     {
 
-        $transaksi = Transaksi::with(['user', 'transaksiProduct.product'])->paginate(10);
+        $transaksi = Transaksi::with(['user', 'transaksiProduct.product'])->latest()->paginate(10);
 
         return view('admin.transaksi.transaksi-index', compact('transaksi'));
     }
@@ -126,8 +126,9 @@ class TransaksiController extends Controller
 
     public function update(Request $request, Transaksi $transaksi)
     {
-        $transaksi = Transaksi::find(request('transaksi_id'));
-     
+
+
+        
         $resi = $request->input('resi');
 
         if ($request->payment_status == 'Diproses' && $transaksi->payment_status == 1) {

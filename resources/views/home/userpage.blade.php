@@ -25,6 +25,8 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('home/assets/css/style.css') }}" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -102,8 +104,9 @@
                             <a href="{{ route('home.detail-product', $product->id) }}"
                                 class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
                                 Detail</a>
-                            <a href="{{ route('home.addToCart', $product->id) }}" class="btn btn-sm text-dark p-0"><i
-                                    class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                            
+                            <button class="btn btn-sm text-dark p-0 btnAddTochart" data-id="{{ $product->id }}"><i
+                                    class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</button>
                         </div>
                     </div>
                 </div>
@@ -214,6 +217,38 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('home/assets/js/main.js') }}"></script>
+
+
+    <script>
+         $(document).ready(function() {
+            $('.btnAddTochart').click(function(e) {
+                var id = $(this).data('id');
+                var qty = 1;
+                e.preventDefault();
+
+
+                $.ajax({
+                    url: '/add-to-cart/' + id,
+                    type: 'POST',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": id,
+                        "qty": qty
+
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            icon: response.status,
+                            title: response.message,
+                            text: 'Berhasil ditambahkan',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
