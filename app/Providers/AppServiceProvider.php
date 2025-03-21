@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view)  {
 
             
-            $keranjangCount = Auth::check() ? Cart::where('user_id', Auth::user()->id)->count() : 0;
+            $keranjangCount = Auth::check() ? Cart::whereStatus('Dalam Keranjang')->where('user_id', Auth::user()->id)->count() : 0;
 
             $view->with('keranjangCount', $keranjangCount);
         });
