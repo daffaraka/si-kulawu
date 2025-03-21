@@ -10,8 +10,8 @@ class AdminController extends Controller
     {
         return view('layout.catagory');
     }
-    public function add_catagory()
-    {
-        $data=new catagory;
-    }
+    // public function add_catagory()
+    // {
+    //     $data=new catagory;
+    // }
 }

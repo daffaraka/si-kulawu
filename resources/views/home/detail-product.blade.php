@@ -289,6 +289,15 @@
                             showConfirmButton: false,
                             timer: 1500
                         });
+                    },
+                    error: function(response) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     }
                 });
             });

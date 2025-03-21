@@ -104,7 +104,7 @@
                             <a href="{{ route('home.detail-product', $product->id) }}"
                                 class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
                                 Detail</a>
-                            
+
                             <button class="btn btn-sm text-dark p-0 btnAddTochart" data-id="{{ $product->id }}"><i
                                     class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</button>
                         </div>
@@ -220,7 +220,7 @@
 
 
     <script>
-         $(document).ready(function() {
+        $(document).ready(function() {
             $('.btnAddTochart').click(function(e) {
                 var id = $(this).data('id');
                 var qty = 1;
@@ -244,6 +244,16 @@
                             showConfirmButton: false,
                             timer: 1500
                         });
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Anda belum login',
+                            footer : '<a class="btn btn-primary" href="/login">Login</a>',
+                            // timer: 1500
+                        });
+
                     }
                 });
             });

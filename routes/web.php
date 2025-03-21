@@ -2,16 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\DashboardAdminController;
-use App\Http\Controllers\HomeResponseController;
-use App\Http\Controllers\PaymentCallBackController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\PaymentCallBackController;
+use App\Http\Controllers\Frontend\HomeResponseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,13 +79,13 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
-    Route::get('/formulir-pembayaran', [TransaksiController::class, 'buatOrder'])->name('home.bayar');
-    Route::get('/lengkapi-pembayaran/{transaksi}', [TransaksiController::class, 'lengkapiPembayaran'])->name('home.lengkapiPembayaran');
+    Route::post('/formulir-pembayaran', [HomeController::class, 'buatOrder'])->name('home.bayar');
+    Route::get('/lengkapi-pembayaran/{transaksi}', [HomeController::class, 'lengkapiPembayaran'])->name('home.lengkapiPembayaran');
 
     Route::post('/add-to-cart/{id}', [HomeController::class, 'addTocart'])->name('home.addToCart');
     Route::get('/keranjang', [CartController::class, 'index'])->name('home.keranjang');
     Route::get('/daftar-transaksi', [HomeController::class, 'daftarTransaksi'])->name('home.daftarTransaksi');
-    Route::post('/bayar/{transaksi}', [TransaksiController::class, 'storeTransaksi'])->name('home.storeTransaksi');
+    Route::post('/bayar/{transaksi}', [HomeController::class, 'storeTransaksi'])->name('home.storeTransaksi');
 });
 
 // Route::post('payments/midtrans-notification', [PaymentCallBackController::class, 'receive']);

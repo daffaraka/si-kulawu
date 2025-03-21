@@ -2,7 +2,7 @@
 @section('title', 'Daftar Transaksi')
 @section('content')
     <div class="product-section">
-        <div class="breadcrumb-section" style="background-image: url('{{asset('home/assets/img/hero-bg.jpg')}}')">
+        <div class="breadcrumb-section" style="background-image: url('{{ asset('home/assets/img/hero-bg.jpg') }}')">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 text-center">
@@ -19,97 +19,102 @@
                 <h3>Keranjang anda kosong</h3>
             @else
                 <h3>Isi Keranjang anda</h3>
-                <div class="row">
-                    <div class="col-xl-8">
-                        @foreach ($keranjang as $item)
-                            <div class="card border shadow-none my-2">
-                                <div class="card-body">
 
-                                    <div class="d-flex align-items-start border-bottom pb-3">
-                                        <div class="mr-5">
-                                            <img src="{{ asset('produk/' . $item->product->gambar_produk) }}"
-                                                style="height: 20vh;" alt="" class="rounded">
-                                        </div>
-                                        <div class="flex-grow-1 align-self-center overflow-hidden">
-                                            <div>
-                                                <h5 class="text-truncate font-size-18"><a href="#"
-                                                        class="text-dark">{{ $item->product->nama_produk }} </a></h5>
+                <form action="{{ route('home.bayar') }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-xl-8">
+                            @foreach ($keranjang as $item)
+                                <div class="card border shadow-none my-2">
+                                    <div class="card-body">
 
-                                                <p class="mb-0 mt-1">{{$item->product->deskripsi}}</span></p>
+                                        <div class="d-flex align-items-start border-bottom pb-3">
+                                            <div class="mr-5">
+                                                <img src="{{ asset('produk/' . $item->product->gambar_produk) }}"
+                                                    style="height: 20vh;" alt="" class="rounded">
                                             </div>
-                                        </div>
-                                        <div class="flex-shrink-0 ms-2">
-                                            <ul class="list-inline mb-0 font-size-16">
-                                                <li class="list-inline-item">
-                                                    <a href="#" class="text-muted px-1">
-                                                        <i class="mdi mdi-trash-can-outline"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="#" class="text-muted px-1">
-                                                        <i class="mdi mdi-heart-outline"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                            <div class="flex-grow-1 align-self-center overflow-hidden">
+                                                <div>
+                                                    <h5 class="text-truncate font-size-18"><a href="#"
+                                                            class="text-dark">{{ $item->product->nama_produk }} </a></h5>
 
-                                    <div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="mt-3">
-                                                    <p class="text-muted mb-2">Price</p>
-                                                    <h5 class="mb-0 mt-2">
-                                                        <span class="me-2">Rp. <span class="harga-produk"
-                                                                data-price="{{ $item->product->harga_produk }}">{{ number_format($item->product->harga_produk) }}</span></span>
-                                                    </h5>
+                                                    <p class="mb-0 mt-1">{{ $item->product->deskripsi }}</span></p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-5">
-                                                <div class="mt-3">
-                                                    <p class="text-muted mb-2">Quantity</p>
-                                                    <div class="d-inline-flex">
-                                                        <input class="form-control qty-input" type="number"
-                                                            name="qty_{{ $item->id }}" data-id="{{ $item->id }}"
-                                                            value="{{ $item->qty }}" min="1">
+                                            <div class="flex-shrink-0 ms-2">
+                                                <ul class="list-inline mb-0 font-size-16">
+                                                    <li class="list-inline-item">
+                                                        <a href="#" class="text-muted px-1">
+                                                            <i class="mdi mdi-trash-can-outline"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a href="#" class="text-muted px-1">
+                                                            <i class="mdi mdi-heart-outline"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="mt-3">
+                                                        <p class="text-muted mb-2">Price</p>
+                                                        <h5 class="mb-0 mt-2">
+                                                            <span class="me-2">Rp. <span class="harga-produk"
+                                                                    data-price="{{ $item->product->harga_produk }}">{{ number_format($item->product->harga_produk) }}</span></span>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="mt-3">
+                                                        <p class="text-muted mb-2">Quantity</p>
+                                                        <div class="d-inline-flex">
+                                                            <input class="form-control qty-input" type="number"
+                                                                name="qty[{{$item->id}}]" data-id="{{ $item->id }}"
+                                                                value="{{ $item->qty }}" min="1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="mt-3">
+                                                        <p class="text-muted mb-2">Total</p>
+                                                        <h5>Rp. <span
+                                                                class="total-harga">{{ number_format($item->product->harga_produk * $item->qty) }}</span>
+                                                        </h5>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
-                                                <div class="mt-3">
-                                                    <p class="text-muted mb-2">Total</p>
-                                                    <h5>Rp. <span
-                                                            class="total-harga">{{ number_format($item->product->harga_produk * $item->qty) }}</span>
-                                                    </h5>
-                                                </div>
-                                            </div>
                                         </div>
+
                                     </div>
 
+
                                 </div>
+                            @endforeach
 
-
-                            </div>
-                        @endforeach
-
-                        <!-- end card -->
+                            <!-- end card -->
 
 
 
-                        <div class="row my-4">
-                            <div class="col-sm-6">
-                                <a href="ecommerce-products.html" class="btn btn-link text-muted">
-                                    <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
-                            </div> <!-- end col -->
-                            <div class="col-sm-6">
-                                <div class="text-sm-end mt-2 mt-sm-0">
-                                    <a href="{{ route('home.bayar') }}" class="btn btn-success">
-                                        <i class="mdi mdi-cart-outline me-1"></i> Checkout Semua Produk</a>
-                                </div>
-                            </div> <!-- end col -->
-                        </div> <!-- end row-->
+                            <div class="row my-4">
+                                <div class="col-sm-6">
+                                    <a href="/" class="btn btn-link text-muted">
+                                        <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
+                                </div> <!-- end col -->
+                                <div class="col-sm-6">
+                                    <div class="text-sm-end mt-2 mt-sm-0">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="mdi mdi-cart-outline me-1"></i> Checkout Semua Produk</button>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row-->
+                        </div>
                     </div>
-                </div>
+                </form>
+
             @endif
 
 
@@ -140,9 +145,8 @@
                             </div>
 
                             <div class="d-block my-2">
-                                <a href="{{ route('home.addToCart', $lain->id) }}" class="cart-btn"><i
-                                        class="fas fa-shopping-cart"></i>
-                                    Tambah ke keranjang</a>
+                                <button class="btn btn-sm text-dark p-0 btnAddTochart" data-id="{{ $lain->id }}"><i
+                                        class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</button>
 
                             </div>
 
@@ -174,6 +178,46 @@
 
                 // Format and update total
                 totalElement.textContent = total.toLocaleString('id-ID');
+            });
+        });
+    });
+
+
+    $(document).ready(function() {
+        $('.btnAddTochart').click(function(e) {
+            var id = $(this).data('id');
+            var qty = 1;
+            e.preventDefault();
+
+
+            $.ajax({
+                url: '/add-to-cart/' + id,
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id": id,
+                    "qty": qty
+
+                },
+                success: function(response) {
+                    Swal.fire({
+                        icon: response.status,
+                        title: response.message,
+                        text: 'Berhasil ditambahkan',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Anda belum login',
+                        footer: '<a class="btn btn-primary" href="/login">Login</a>',
+                        // timer: 1500
+                    });
+
+                }
             });
         });
     });
