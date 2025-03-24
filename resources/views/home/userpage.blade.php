@@ -237,12 +237,17 @@
 
                     },
                     success: function(response) {
-                        Swal.fire({
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+
+                        Toast.fire({
                             icon: response.status,
                             title: response.message,
-                            text: 'Berhasil ditambahkan',
-                            showConfirmButton: false,
-                            timer: 1500
+                            footer: '<a class="btn btn-primary" href="/keranjang">Lihat Keranjang</a>',
                         });
                     },
                     error: function(xhr, status, error) {

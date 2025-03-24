@@ -86,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/keranjang', [CartController::class, 'index'])->name('home.keranjang');
     Route::get('/daftar-transaksi', [HomeController::class, 'daftarTransaksi'])->name('home.daftarTransaksi');
     Route::post('/bayar/{transaksi}', [HomeController::class, 'storeTransaksi'])->name('home.storeTransaksi');
+    Route::post('/hapus-item-keranjang/{cart}', [CartController::class, 'hapusItemKeranjang'])->name('home.hapusItemKeranjang');
 });
 
 // Route::post('payments/midtrans-notification', [PaymentCallBackController::class, 'receive']);

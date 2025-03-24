@@ -25,8 +25,8 @@
                     <div class="row">
                         <div class="col-xl-8">
                             @foreach ($keranjang as $item)
-                                <div class="card border shadow-none my-2">
-                                    <div class="card-body">
+                                <div class="card shadow-sm my-3">
+                                    <div class="card-body border-1">
 
                                         <div class="d-flex align-items-start border-bottom pb-3">
                                             <div class="mr-5">
@@ -73,8 +73,9 @@
                                                         <p class="text-muted mb-2">Quantity</p>
                                                         <div class="d-inline-flex">
                                                             <input class="form-control qty-input" type="number"
-                                                                name="qty[{{$item->id}}]" data-id="{{ $item->id }}"
-                                                                value="{{ $item->qty }}" min="1">
+                                                                name="qty[{{ $item->id }}]"
+                                                                data-id="{{ $item->id }}" value="{{ $item->qty }}"
+                                                                min="1">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -89,6 +90,11 @@
                                             </div>
                                         </div>
 
+                                        <div class="d-flex justify-content-end">
+
+                                            <button type="button" class="btn btn-sm btn-danger btnHapusCart"
+                                                data-id="{{ $item->id }}"><i class="fas fa-trash"></i> Hapus</button>
+                                        </div>
                                     </div>
 
 
@@ -158,67 +164,121 @@
         </div>
     </div>
 @endsection
-@push('script')
-@endpush
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Select all quantity input fields
-        const qtyInputs = document.querySelectorAll('.qty-input');
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select all quantity input fields
+            const qtyInputs = document.querySelectorAll('.qty-input');
 
-        qtyInputs.forEach(function(input) {
-            input.addEventListener('input', function() {
-                const id = this.getAttribute('data-id');
-                const quantity = parseInt(this.value);
-                const priceElement = this.closest('.row').querySelector('.harga-produk');
-                const price = parseInt(priceElement.getAttribute('data-price'));
-                const totalElement = this.closest('.row').querySelector('.total-harga');
+            qtyInputs.forEach(function(input) {
+                input.addEventListener('input', function() {
+                    const id = this.getAttribute('data-id');
+                    const quantity = parseInt(this.value);
+                    const priceElement = this.closest('.row').querySelector('.harga-produk');
+                    const price = parseInt(priceElement.getAttribute('data-price'));
+                    const totalElement = this.closest('.row').querySelector('.total-harga');
 
-                // Calculate total
-                const total = price * quantity;
+                    // Calculate total
+                    const total = price * quantity;
 
-                // Format and update total
-                totalElement.textContent = total.toLocaleString('id-ID');
+                    // Format and update total
+                    totalElement.textContent = total.toLocaleString('id-ID');
+                });
             });
         });
-    });
 
+        $('.btnHapusCart').click(function(e) {
 
-    $(document).ready(function() {
-        $('.btnAddTochart').click(function(e) {
             var id = $(this).data('id');
-            var qty = 1;
+
+            console.log(id);
+
             e.preventDefault();
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Anda akan menghapus produk dari keranjang!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/hapus-item-keranjang/' + $(this).data('id'),
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "id": $(this).data('id')
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                icon: response.status,
+                                title: response.message,
+                                text: '',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                            setTimeout(function() {
+                                location.reload();
+                            },500);
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Gagal menghapus produk dari keranjang!',
+                                // footer : '<a class="btn btn-primary" href="/login">Login</a>',
+                                timer: 3000
+                            });
 
-
-            $.ajax({
-                url: '/add-to-cart/' + id,
-                type: 'POST',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "id": id,
-                    "qty": qty
-
-                },
-                success: function(response) {
-                    Swal.fire({
-                        icon: response.status,
-                        title: response.message,
-                        text: 'Berhasil ditambahkan',
-                        showConfirmButton: false,
-                        timer: 1500
+                        }
                     });
-                },
-                error: function(xhr, status, error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Anda belum login',
-                        footer: '<a class="btn btn-primary" href="/login">Login</a>',
-                        // timer: 1500
-                    });
-
                 }
             });
         });
-    });
-</script>
+
+
+        $(document).ready(function() {
+            $('.btnAddTochart').click(function(e) {
+                var id = $(this).data('id');
+                var qty = 1;
+                e.preventDefault();
+
+
+                $.ajax({
+                    url: '/add-to-cart/' + id,
+                    type: 'POST',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": id,
+                        "qty": qty
+
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            icon: response.status,
+                            title: response.message,
+                            text: 'Berhasil ditambahkan',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Anda belum login',
+                            footer: '<a class="btn btn-primary" href="/login">Login</a>',
+                            // timer: 1500
+                        });
+
+                    }
+                });
+            });
+
+
+
+        });
+    </script>
+@endpush

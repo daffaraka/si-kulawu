@@ -206,6 +206,7 @@ class HomeController extends Controller
 
 
 
+        Cart::where('user_id', Auth::user()->id)->whereStatus('Dalam Transaksi')->delete();
 
 
         $transaksi = $order;
