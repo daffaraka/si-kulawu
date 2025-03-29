@@ -83,7 +83,7 @@ class HomeController extends Controller
     {
         $user_id = Auth::user()->id;
 
-        $transaksi = Transaksi::with(['user', 'transaksiProduct.product'])->whereIn('payment_status', [1])->where('user_id', $user_id)->latest()->get();
+        $transaksi = Transaksi::with(['user', 'transaksiProduct.product'])->where('user_id', $user_id)->latest()->get();
         $transaksiSelesai = Transaksi::with(['user', 'transaksiProduct.product'])
             ->whereIn('payment_status', [2])
             ->where('user_id', $user_id)
