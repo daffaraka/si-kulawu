@@ -20,7 +20,8 @@ class Transaksi extends Model
         'nama_penerima',
         'metode_pembayaran',
         'pengiriman',
-        'alamat'
+        'alamat',
+        'bukti_pembayaran'
     ];
 
 

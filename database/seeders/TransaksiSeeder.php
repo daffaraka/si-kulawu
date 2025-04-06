@@ -30,8 +30,8 @@ class TransaksiSeeder extends Seeder
                 'total_price' => rand(100000, 1000000),
                 'payment_status' => $statuses[array_rand($statuses)],
                 'nama_penerima' => 'Penerima ' . ($i + 1),
-                'metode_pembayaran' => $metodePembayarans[array_rand($metodePembayarans)],
-                'pengiriman' => $pengirimans[array_rand($pengirimans)],
+                // 'metode_pembayaran' => $metodePembayarans[array_rand($metodePembayarans)],
+                // 'pengiriman' => $pengirimans[array_rand($pengirimans)],
                 'alamat' => 'Alamat ' . ($i + 1),
             ]);
 

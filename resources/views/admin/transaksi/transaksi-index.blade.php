@@ -27,7 +27,7 @@
                     <th scope="col">Nama & <br> Kontak Customer</th>
                     <th scope="col" class="w-25">Detail Produk</th>
                     <th scope="col">Total Harga + Ongkir</th>
-                    <th scope="col">Metode Pembayaran</th>
+                    {{-- <th scope="col">Metode Pembayaran</th> --}}
                     <th scope="col">Status Pesanan</th>
                     <th scope="col">No. Resi</th>
                     <th>Action</th>
@@ -54,7 +54,7 @@
                             </ul>
                         </td>
                         <td> Rp. {{ number_format($data->total_price) }}</td>
-                        <td>{{ $data->metode_pembayaran }}</td>
+                        {{-- <td>{{ $data->metode_pembayaran }}</td> --}}
                         <td>
                             @if ($data->payment_status == '1')
                                 <button class="btn btn-sm btn-warning">Menunggu Pembayaran</button>

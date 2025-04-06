@@ -105,7 +105,7 @@
                                                         <input class="form-control qty-input" type="number"
                                                             name="qty_{{ $transaksiProduct->id }}"
                                                             data-id="{{ $transaksiProduct->id }}"
-                                                            value="{{ $transaksiProduct->qty }}" min="1">
+                                                            value="{{ $transaksiProduct->qty }}" min="1" readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -133,35 +133,49 @@
                             </div>
 
                             <div class="row mt-3">
-                                <div class="col-6">
+                                <div class="col-4">
                                     @if ($item->payment_status == '1')
-                                        <button type="button" class="btn btn-sm btn-warning border w-100">
+                                        <button type="button" class="btn  btn-warning">
                                             Menunggu Pembayaran
                                         </button>
                                     @elseif($item->payment_status == '2')
-                                        <button type="button" class="btn btn-sm btn-success border w-100">
-                                            Sudah Dibayar
+                                        <button type="button" class="btn  btn-outline-success">
+                                            Pembayaran Dikonfirmasi
                                         </button>
                                     @elseif($item->payment_status == '3')
-                                        <button type="button" class="btn btn-sm btn-secondary border w-100">
-                                            Kadaluarsa
+                                        <button type="button" class="btn  btn-primary">
+                                            Diproses
                                         </button>
                                     @elseif($item->payment_status == '4')
-                                        <button type="button" class="btn btn-sm btn-danger border w-100">
-                                            Dibatalkan
+                                        <button type="button" class="btn  btn-info">
+                                            Dikirim
+                                        </button>
+                                    @elseif($item->payment_status == '5')
+                                        <button type="button" class="btn  btn-outline-dark">
+                                            Sampai di Tujuan
+                                        </button>
+                                    @elseif($item->payment_status == '6')
+                                        <button type="button" class="btn  btn-success">
+                                            Selesai
                                         </button>
                                     @else
-                                        <button type="button" class="btn btn-sm btn-info border w-100">
+                                        <button type="button" class="btn  btn-secondary">
                                             Status Tidak Valid
                                         </button>
                                     @endif
                                 </div>
-                                <div class="col-6">
-                                    <a href="{{ route('home.lengkapiPembayaran', $item->id) }}"
-                                        class="btn btn-dark shadwo border w-100">Bayar</a>
+                                <div class="col-4">
+
+                                    <a href="{{route('home.lengkapiPembayaran',$item->id)}}" class="btn btn-primary">Lihat pembayaran</a>
+                                    {{-- <a href="{{ route('home.lengkapiPembayaran', $item->id) }}"
+                                        class="btn btn-dark shadwo border w-100">Bayar</a> --}}
                                 </div>
 
+                                <div class="col-4">
 
+                                    {{-- <a href="{{ route('home.lengkapiPembayaran', $item->id) }}"
+                                        class="btn btn-dark shadwo border w-100">Bayar</a> --}}
+                                </div>
 
 
                             </div>

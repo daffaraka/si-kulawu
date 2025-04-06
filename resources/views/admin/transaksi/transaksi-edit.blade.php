@@ -50,6 +50,12 @@
                                 @elseif ($transaksi->payment_status == 6) Selesai
                                 @else Status Tidak Diketahui @endif" readonly>
                         </div>
+
+                        <div class="form-group mb-3">
+                            <label for="">Bukti Pembayaran</label> <br>
+                            <a href="{{ asset('storage/' . $transaksi->bukti_pembayaran) }}" class="btn btn-info"> <i
+                                class="fas fa-file-invoice"> </i> Bukti Pembayaran</a>
+                        </div>
                     </div>
                 </div>
 

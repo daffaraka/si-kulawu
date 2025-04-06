@@ -231,14 +231,40 @@ class HomeController extends Controller
     {
         // dd($request->all());
         $transaksi->update([
-            'metode_pembayaran' => $request->metode_pembayaran,
-            'pengiriman' => $request->pengiriman,
+            // 'metode_pembayaran' => $request->metode_pembayaran,
+            // 'pengiriman' => $request->pengiriman,
             'nama_penerima' => $request->nama_penerima,
             'alamat' => $request->alamat,
-            'payment_status' => 2
+       
         ]);
 
         return redirect()->back();
+    }
+
+
+    public function uploadBuktiPembayaran(Request $request, Transaksi $transaksi)
+    {
+
+
+        $file = $request->file('bukti_pembayaran');
+        $fileName = $file->getClientOriginalName();
+        $fileSaved = $transaksi->id . '-' .now()->format('Y-m-d H-i-s').$fileName;
+        $path = $request->file('bukti_pembayaran')->storeAs('bukti_pembayaran', $fileSaved, 'public');
+
+        $transaksi->update([
+
+            'bukti_pembayaran' => $path,
+            'payment_status' => 2
+        ]);
+
+
+        return response(
+            [
+                'success' => true,
+                'message' => 'Bukti pembayaran berhasil diupload',
+                'data' => $transaksi
+            ]
+        );
     }
 
     // public function buatUlasan($id)
