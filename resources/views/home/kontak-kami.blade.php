@@ -2,14 +2,14 @@
 @section('title', 'Kontak Kami')
 @section('meta-tags')
     <meta name="description"
-        content="SI Kuwalu selalu siap membantu Anda. Silakan hubungi tim layanan pelanggan kami untuk informasi lebih lanjut tentang produk, pesanan, atau pertanyaan lainnya.">
-    <meta name="keywords" content="kontak SI Kuwalu">
+        content="SI Kulawu selalu siap membantu Anda. Silakan hubungi tim layanan pelanggan kami untuk informasi lebih lanjut tentang produk, pesanan, atau pertanyaan lainnya.">
+    <meta name="keywords" content="kontak SI Kulawu">
 @endsection
 @section('content')
     <div class="product-section" style="margin: 30vh; ">
         <div class="container">
             <p style="font-family: Arial, sans-serif; font-size: 16px; color: #333; margin-bottom: 60px;">
-                Terima kasih telah mengunjungi <strong>SI Kuwalu</strong>! Jika Anda mencari produk
+                Terima kasih telah mengunjungi <strong>SI Kulawu</strong>! Jika Anda mencari produk
                 <a href="#">furniture kayu</a> berkualitas tinggi yang menggabungkan kekuatan dan estetika, Anda berada
                 di tempat yang tepat. Kami menawarkan berbagai pilihan
                 <a href="#">meja kayu</a> yang elegan dan tahan lama, serta solusi
@@ -20,7 +20,7 @@
                 yang sesuai dengan kebutuhan Anda.
             </p>
 
-            <h2 class="mb-5">FAQ SI Kuwalu</h2>
+            <h2 class="mb-5">FAQ SI Kulawu</h2>
 
 
             <div class="content-faq my-5">
@@ -32,12 +32,12 @@
                             <p class="d-inline-flex gap-1">
                                 <a class="font-weight-bold text-dark" data-bs-toggle="collapse" href="#collapseOne"
                                     role="button" aria-expanded="false" aria-controls="collapseOne">
-                                    <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Apa itu SI Kuwalu?
+                                    <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Apa itu SI Kulawu?
                                 </a>
                             </p>
                             <div class="collapse" id="collapseOne">
                                 <div class="card card-body">
-                                    SI Kuwalu adalah usaha kerajinan kayu yang menawarkan berbagai jenis furniture
+                                    SI Kulawu adalah usaha kerajinan kayu yang menawarkan berbagai jenis furniture
                                     berkualitas
                                     tinggi untuk kebutuhan rumah dan kantor. Kami menyediakan beragam produk dengan desain
                                     modern,
@@ -58,7 +58,7 @@
                             </p>
                             <div class="collapse" id="collapseTwo">
                                 <div class="card card-body">
-                                    Untuk memesan produk di SI Kuwalu, ikuti langkah-langkah berikut:
+                                    Untuk memesan produk di SI Kulawu, ikuti langkah-langkah berikut:
                                     <ul>
                                         <li>Pilih produk yang Anda inginkan.</li>
                                         <li>Klik tombol "Lihat Produk" atau "Tambah ke Keranjang".</li>
@@ -146,7 +146,7 @@
                                     role="button" aria-expanded="false" aria-controls="collapseSix">
                                     <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Bagaimana kebijakan pengembalian
                                     barang di
-                                    SI Kuwalu?
+                                    SI Kulawu?
                                 </a>
                             </p>
                             <div class="collapse" id="collapseSix">
@@ -186,7 +186,7 @@
                             <p class="d-inline-flex gap-1">
                                 <a class="font-weight-bold text-dark" data-bs-toggle="collapse" href="#collapseEight"
                                     role="button" aria-expanded="false" aria-controls="collapseEight">
-                                    <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Apakah SI Kuwalu menawarkan
+                                    <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Apakah SI Kulawu menawarkan
                                     layanan
                                     pemasangan furniture?
                                 </a>
@@ -209,7 +209,7 @@
                                     role="button" aria-expanded="false" aria-controls="collapseNine">
                                     <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Bagaimana cara menghubungi
                                     layanan
-                                    pelanggan SI Kuwalu?
+                                    pelanggan SI Kulawu?
                                 </a>
                             </p>
                             <div class="collapse" id="collapseNine">
@@ -229,14 +229,14 @@
                             <p class="d-inline-flex gap-1">
                                 <a class="font-weight-bold text-dark" data-bs-toggle="collapse" href="#collapseTen"
                                     role="button" aria-expanded="false" aria-controls="collapseTen">
-                                    <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Apakah SI Kuwalu memiliki
+                                    <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Apakah SI Kulawu memiliki
                                     toko
                                     fisik?
                                 </a>
                             </p>
                             <div class="collapse" id="collapseTen">
                                 <div class="card card-body">
-                                    Ya, selain beroperasi secara online, SI Kuwalu juga memiliki toko fisik. Anda
+                                    Ya, selain beroperasi secara online, SI Kulawu juga memiliki toko fisik. Anda
                                     dapat
                                     mengunjungi toko kami di <a href="https://maps.app.goo.gl/grDC6fmcZGGQfMZu8">lokasi
                                         ini</a>.

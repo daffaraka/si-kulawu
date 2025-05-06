@@ -5,7 +5,7 @@
                 <div class="section-title">
                     <h3><span class="orange-text">Produk</span> Kami</h3>
                     <p>"Dapatkan koleksi furniture elegan dan fungsional untuk setiap ruangan di rumah Anda di Menak
-                        Furniture. Tambahkan sentuhan indah ke rumah Anda dengan furniture dari SI Kuwalu hari
+                        Furniture. Tambahkan sentuhan indah ke rumah Anda dengan furniture dari SI Kulawu hari
                         ini!"</p>
                 </div>
             </div>

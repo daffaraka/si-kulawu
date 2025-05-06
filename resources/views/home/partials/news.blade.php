@@ -5,7 +5,7 @@
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="section-title">	
 						<h3><span class="orange-text">Berita</span> Kami</h3>
-						<p>"Kami dengan bangga mengumumkan berbagai perkembangan terbaru! Jelajahi berita terkini tentang inovasi desain, peluncuran produk terbaru, serta cerita inspiratif di balik layar SI Kuwalu. Bergabunglah dengan kami dalam perjalanan menuju keindahan dan kenyamanan ruang hidup Anda."</p>
+						<p>"Kami dengan bangga mengumumkan berbagai perkembangan terbaru! Jelajahi berita terkini tentang inovasi desain, peluncuran produk terbaru, serta cerita inspiratif di balik layar SI Kulawu. Bergabunglah dengan kami dalam perjalanan menuju keindahan dan kenyamanan ruang hidup Anda."</p>
 					</div>
 				</div>
 			</div>

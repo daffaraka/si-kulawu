@@ -10,7 +10,7 @@
 					<div class="abt-text">
 						<p class="top-sub">Sejak Tahun 2000</p>
 						<h2>Menak <span class="orange-text">Furniture</span></h2>
-						<p>Bergaya dengan keanggunan! SI Kuwalu menawarkan lebih dari sekadar furnitur; kami hadir untuk membantu mengukir cerita kebahagiaan di setiap ruangan. Mari, temukan inspirasi baru untuk rumah impianmu!</p>
+						<p>Bergaya dengan keanggunan! SI Kulawu menawarkan lebih dari sekadar furnitur; kami hadir untuk membantu mengukir cerita kebahagiaan di setiap ruangan. Mari, temukan inspirasi baru untuk rumah impianmu!</p>
 						<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente facilis illo repellat veritatis minus, et labore minima mollitia qui ducimus.</p> -->
 						<a href="{{ route('home.tentang-kami') }}" class="boxed-btn mt-4">know more</a>
 					</div>

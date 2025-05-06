@@ -161,6 +161,7 @@
                                                 <p class="mb-0">Nama Bank: <b> BCA</b></p>
                                                 <p class="mb-0">No. Rekening: <b>0600754475</b> </p>
                                                 <p class="mb-0">a.n <b> Fadli Izdiharuddin Aufar</b> </p>
+                                                <p class="mb-0">Kontak <b> 081393633344</b> </p>
                                             </div>
                                         </div>
                                     @else

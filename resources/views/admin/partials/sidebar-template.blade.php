@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <!-- <img src="home/assets/img/logo-menak.png" alt="" class="brand-image " style="opacity: .8"> -->
-      <span class="brand-text font-weight-light">SI Kuwalu</span>
+      <span class="brand-text font-weight-light">SI Kulawu</span>
     </a>
 
     <!-- Sidebar -->
