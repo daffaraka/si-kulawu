@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>@yield('title','Kulawu Shop')</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
-
+    
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 

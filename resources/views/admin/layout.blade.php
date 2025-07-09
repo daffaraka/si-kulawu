@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> @yield('title', 'SI Kulawu') | Dashboard  </title>
+    <title> @yield('title', 'SI Kulawu') | Dashboard </title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -32,10 +34,11 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('admin/dist/plugins/summernote/summernote-bs4.min.css') }}">
 
-    <link rel="stylesheet" href="{{asset('admin/dist/plugins/datatables-bs4/js/dataTables.bootstrap4.min.css')}} ">
-    <link rel="stylesheet" href="{{asset('admin/dist/plugins/datatables-responsive/css/responsive.bootstrap4.css')}} ">
+    <link rel="stylesheet" href="{{ asset('admin/dist/plugins/datatables-bs4/js/dataTables.bootstrap4.min.css') }} ">
+    <link rel="stylesheet"
+        href="{{ asset('admin/dist/plugins/datatables-responsive/css/responsive.bootstrap4.css') }} ">
 
-    <link rel="stylesheet" href="{{asset('admin/dist/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}} ">
+    <link rel="stylesheet" href="{{ asset('admin/dist/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }} ">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
