@@ -235,7 +235,7 @@ class HomeController extends Controller
             // 'pengiriman' => $request->pengiriman,
             'nama_penerima' => $request->nama_penerima,
             'alamat' => $request->alamat,
-       
+
         ]);
 
         return redirect()->back();
@@ -248,7 +248,7 @@ class HomeController extends Controller
 
         $file = $request->file('bukti_pembayaran');
         $fileName = $file->getClientOriginalName();
-        $fileSaved = $transaksi->id . '-' .now()->format('Y-m-d H-i-s').$fileName;
+        $fileSaved = $transaksi->id . '-' . now()->format('Y-m-d H-i-s') . $fileName;
         $path = $request->file('bukti_pembayaran')->storeAs('bukti_pembayaran', $fileSaved, 'public');
 
         $transaksi->update([
@@ -301,4 +301,95 @@ class HomeController extends Controller
 
     //     return to_route('home.daftarTransaksi');
     // }
+
+
+
+    public function searchProducts(Request $request)
+    {
+
+        $data = [
+            'products' => [],
+            'keyword' => $request->keyword,
+            'status' => 'success',
+            'message' => 'Berhasil'
+        ];
+
+
+        $keyword = $request->keyword ?? $request->filter;
+
+        if ($request->has('filter')) {
+            if (empty($request->filter)) {
+                $data = [
+                    'products' => Product::all(),
+                    'keyword' => $keyword,
+                    'status' => 'success',
+                    'message' => 'Filter kosong, menampilkan semua product'
+                ];
+            } else {
+
+                switch ($request->filter) {
+                    case 'terbaru':
+                        $product = Product::latest()->get();
+                        break;
+                    case 'terlama':
+                        $product = Product::oldest()->get();
+                        break;
+                    case 'terendah':
+                        $product = Product::orderBy('harga_produk', 'asc')->get();
+                        break;
+                    case 'tertinggi':
+                        $product = Product::orderBy('harga_produk', 'desc')->get();
+                        break;
+                    default:
+                        $product = Product::all();
+                        break;
+                }
+
+                $data = [
+                    'products' => $product,
+                    'keyword' => $keyword,
+                    'status' => 'success',
+                    'message' => 'Berhasil menampilkan produk berdasarkan filter'
+                ];
+            }
+        } else {
+            if (empty($request->keyword)) {
+                $data = [
+                    'products' => Product::all(),
+                    'keyword' => $keyword,
+                    'status' => 'success',
+                    'message' => 'Keyword kosong, menampilkan semua product'
+                ];
+            } else {
+                // return response()->json(
+                $product =  Product::when(!empty($request->keyword), function ($query) use ($request) {
+                    $query->where('nama_produk', 'like', '%' . $request->keyword . '%');
+                })
+                    ->latest()
+                    ->get();
+                // );
+
+                // dd(count($product ) >= 1);
+                if (count($product) >= 1) {
+                    $data = [
+                        'products' => $product,
+                        'keyword' => $keyword,
+                        'status' => 'success',
+                        'message' => 'Produk berhasil ditemukan'
+                    ];
+                } else {
+
+                    $data = [
+                        'products' => null,
+                        'keyword' => $keyword,
+                        'status' => 'success',
+                        'message' => 'Produk tidak ditemukan'
+                    ];
+                }
+            }
+        }
+
+
+        return view('home.search-result', compact('data', 'keyword'));
+    }
 }

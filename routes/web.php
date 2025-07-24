@@ -42,6 +42,7 @@ Route::get('detail-product/{id}', [HomeController::class, 'detailProduct'])->nam
 // Route::get('berikan-ulasan/{id}', [HomeController::class, 'berikanUlasan'])->name('home.berikanUlasan');
 // Route::post('kirim-ulasan', [HomeController::class, 'tambahkanUlasan'])->name('home.tambahkanUlasan');
 
+Route::post('search-products', [HomeController::class, 'searchProducts'])->name('home.searchProducts');
 
 // 
 Route::post('get-data-transaksi-selesai/{id}', [HomeResponseController::class, 'getDataTransaksiSelesai'])->name('home.getDataTransaksi');
