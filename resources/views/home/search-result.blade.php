@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-lg-12">
                 <div class="float-right">
                     <form action="{{ route('home.searchProducts') }}" method="POST">
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row my-4">
 
             @if ($data['products'] != null)
                 @foreach ($data['products'] as $item)
